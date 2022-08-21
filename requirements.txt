@@ -1,0 +1,2 @@
+pyglet==1.5.21
+PyMsgBox==1.0.9
