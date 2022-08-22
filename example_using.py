@@ -82,7 +82,7 @@ for i, w in enumerate(subfolders):
     symbols = []
     filenames = next(os.walk(w + "/mnist-like"), (None, None, []))[2]  # [] if no file
     filenames = sort(filenames)
-
+    if w == './.git': continue
     # if i==0: SYMBOLS = [x.split('.')[0] for x in filenames]
 
     temp_files = torch.empty(0, 28, 28)
@@ -130,8 +130,6 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #         return x
 
 
-
-
 class ConvNet(nn.Module):
     def __init__(self):
         super(ConvNet, self).__init__()
@@ -177,7 +175,6 @@ test_loss_history = []
 train_loss_history = []
 
 for epoch in range(200):
-    # permutation = np.random.permutation(len(train_set))
     loss_value = 0
     for i in range(0, len(train_set), batch_size):
         optimizer.zero_grad()
@@ -187,10 +184,6 @@ for epoch in range(200):
             device)
 
         X_batch = X_batch.reshape(X_batch.shape[0], 1, 28, 28)
-        # print(X_batch.shape)
-        # plt.imshow(X_batch[67][0].reshape((28, 28)).cpu())
-        # plt.show()
-        # print(SYMBOLS[y_batch[67]])
 
         prediction = mnistNet.forward(X_batch)
         loss_value = loss(prediction, y_batch)
@@ -199,7 +192,6 @@ for epoch in range(200):
     scheduler.step()
 
     train_loss_history.append(loss_value.item())
-    # print(val_set.shape)
     test_prediction = mnistNet.forward(val_set.float())
     y_test = torch.tensor([y % len(SYMBOLS) for y in range(len(train_set), len(train_set) + len(val_set))]).to(device)
     accuracy = (test_prediction.argmax(dim=1) == y_test).float().mean().item()

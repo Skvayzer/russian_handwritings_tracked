@@ -22,28 +22,6 @@ SYMBOLS = ['А','а','Б','б','В','в','Г','г','Д','д','Е','е','Ё','ё'
 MNIST_IMAGE_SIZE = 28
 
 
-# import scipy.stats
-# import numpy as np
-# import matplotlib.pyplot as plt
-#
-# def random_line(m, b, sigma, size=1):
-#     xdata = np.linspace(-1.0,1.0,size)
-#     # Generate normally distributed random error ~ N(0, sigma**2)
-#     errors = scipy.stats.norm.rvs(loc=0, scale=sigma, size=size)
-#     ydata = m * xdata + b + errors
-#     return xdata, ydata
-#
-# xs, ys = random_line(2, 3, 1, size=50)
-#
-# # Plot to see how closely the values fit the
-# #   original line
-# fig, ax = plt.subplots()
-# ax.plot(xs, ys, 'o')
-# ax.plot(xs, 2 * xs + 3)
-#
-# plt.show()
-
-
 def trapez(y,y0,w):
     return np.clip(np.minimum(y+1+w/2-y0, -y+1+w/2+y0),0,1)
 
@@ -70,7 +48,7 @@ def weighted_line(r0, c0, r1, c1, w, rmin=0, rmax=np.inf):
     # We write y as a function of x, because the slope is always <= 1
     # (in absolute value)
     x = np.arange(c0, c1+1, dtype=float)
-    if c1 == c0: y = x * slope + (c1*r0-c0*r1)
+    if c1 == c0: y = np.arange(r0, r1+1, dtype=float) # x * slope + (c1*r0-c0*r1)
     else: y = x * slope + (c1*r0-c0*r1) / (c1-c0)
 
     # Now instead of 2 values for y, we have 2*np.ceil(w/2).
@@ -99,13 +77,6 @@ def connect_points(x, y, img, times):
     return img
 
 
-# example = np.zeros((28, 28))
-# ys, xs, vals = weighted_line(4, 2, 17, 20, 2)
-# example[xs, ys] = vals
-#
-#
-# plt.imshow(example)
-# plt.show()
 
 writers = list()
 subfolders = [ f.path for f in os.scandir(".") if f.is_dir() ]
@@ -124,7 +95,6 @@ for w in subfolders:
                 r = csv.reader(f, delimiter=',')
 
                 data = list(map(int, list(r)[0]))
-                # print(data)
         else:
             print("File Not Found: ", dots_path)
             continue
@@ -157,6 +127,7 @@ for w in subfolders:
         for j in range(len(x)):
             scattered_dots[x[j], y[j]] = 1
         scattered_dots = np.rot90(scattered_dots)
+
         # plt.imshow(scattered_dots)
         # plt.title("Scattered " + w + "/" + WORDS[i])
         # plt.show()
@@ -168,11 +139,6 @@ for w in subfolders:
         # plt.imshow(connected_dots)
         # plt.title("Connected " + w + "/" + WORDS[i])
         # plt.show()
-
-
-
-        # files = [f for f in os.listdir('.') if os.path.isfile(f)]
-        # print(files)
 
 
 
