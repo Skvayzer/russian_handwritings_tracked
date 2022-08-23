@@ -4,7 +4,7 @@
 
 Data Set Information:
 
-We created a character database by collecting samples from 8 writers. Each writer contributed with letters (lower and uppercase), digits, and other words (Spanish diacritics and punctuation marks) that we have not employed in our experiments and are not included in this database version. Two samples have been collected for each pair writer/character, so the total number of samples in this database version is 1364:
+We created a character database by collecting samples from 8 writers. Each writer contributed with letters (lower and uppercase), digits, and words from pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, so the total number of samples in this database version is 2128:
 
 8 writers x 2 repetitions x (2x26 letters + 10 digits)
 
@@ -12,7 +12,7 @@ The proposed task is a writer-independent one consisting of 11 leaving-one-write
 
 10 writers x 2 repetitions x (2x26 letters + 10 digits)
 
-Moreover, this classification task is a 35-class one because we have not considered a different class for each different character: each one of the 26 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as o's.
+Moreover, this classification task is a 43-class one because we have not considered a different class for each different character: each one of the 26 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as o's.
 
 This database is available in a UNIPEN-like format, trying to mimic the original Pendigits database. Two versions of that database are available; see folder: [Web Link]
 
@@ -53,32 +53,39 @@ a. Character name: Each sample begins with a ".SEGMENT" line. The last component
 
 b. Class name: The class name of a sample appears in the ".COMMENT" line that follows its ".SEGMENT" line. This name is one out of 35 possibilities. In each file, the complete set of possibilities is shown in ".COMMENT" lines between the ".LEXICON" line and a ".HIERARCHY" one. Those class definitions are repeated here:
 
-[A] = { "a" , "A" }
-[B] = { "b" , "B" }
-[C] = { "c" , "C" }
-[D] = { "d" , "D" }
-[E] = { "e" , "E" }
-[F] = { "f" , "F" }
-[G] = { "g" , "G" }
-[H] = { "h" , "H" }
-[I] = { "i" , "I" }
-[J] = { "j" , "J" }
-[K] = { "k" , "K" }
-[L] = { "l" , "L" }
-[M] = { "m" , "M" }
-[N] = { "n" , "N" }
-[O] = { "o" , "O" , "0" }
-[P] = { "p" , "P" }
-[Q] = { "q" , "Q" }
-[R] = { "r" , "R" }
-[S] = { "s" , "S" }
-[T] = { "t" , "T" }
-[U] = { "u" , "U" }
-[V] = { "v" , "V" }
-[W] = { "w" , "W" }
-[X] = { "x" , "X" }
-[Y] = { "y" , "Y" }
-[Z] = { "z" , "Z" }
+[A] = { "а" , "А" }
+[Б] = { "б" , "Б" }
+[В] = { "в" , "В" }
+[Г] = { "г" , "Г" }
+[Д] = { "д" , "Д" }
+[Е] = { "е" , "Е" }
+[Ё] = { "ё" , "Ё" }
+[Ж] = { "ж" , "Ж" }
+[З] = { "з" , "З" }
+[И] = { "и" , "И" }
+[Й] = { "й" , "Й" }
+[К] = { "к" , "К" }
+[Л] = { "л" , "Л" }
+[М] = { "м" , "М" }
+[Н] = { "н" , "Н" }
+[О] = { "о" , "О", "0" }
+[П] = { "п" , "П" }
+[Р] = { "р" , "Р" }
+[С] = { "с" , "С" }
+[Т] = { "т" , "Т" }
+[У] = { "у" , "У" }
+[Ф] = { "ф" , "Ф" }
+[Х] = { "х" , "Х" }
+[Ц] = { "ц" , "Ц" }
+[Ч] = { "ч" , "Ч" }
+[Ш] = { "ш" , "Ш" }
+[Щ] = { "щ" , "Щ" }
+[Ъ] = { "ъ" , "Ъ" }
+[Ы] = { "ы" , "Ы" }
+[Ь] = { "ь" , "Ь" }
+[Э] = { "э" , "Э" }
+[Ю] = { "ю" , "Ю" }
+[Я] = { "я" , "Я" }
 [1] = { "1" }
 [2] = { "2" }
 [3] = { "3" }
