@@ -14,12 +14,18 @@ The proposed task is a writer-independent one consisting of 11 leaving-one-write
 
 Moreover, this classification task is a 43-class one because we have not considered a different class for each different character: each one of the 33 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as "о" 's.
 
-This database is available in a UNIPEN-like format, trying to mimic the original Pendigits database. Two versions of that database are available; see folder: [Web Link]
+Database structure:
 
-The distribution of our database consists of 12 files:
+scanner.py -- character scanning program, dataset collection.
+convert2mnist.py -- a program for converting a dataset into a mnist-like form. it is intended for an example with the test.
+example_using.py -- example of a primitive grid for character recognition. It is intended only to demonstrate the consistency of the dataset. When using a dataset, of course, the user can and will use their own, more advanced approaches.
+data - folder with dataset
+w_n_m - folder with writer's attempt (in total 28 folders)
+       <char> - the main file of the symbol track, a text file with a list of coordinates of the form - "x1","y1","x2","y2",...,"xN","yN"
+       <char>_times - a file with additional information on the track with a list of time in ms between receiving coordinates of points
+       <char>.png is an auxiliary file - a picture of the symbol as it was visible to the writer. The file is for understanding only
+ 
 
-uji.names
-One file "UJIpenchars-wNN" per writer, where NN = "01", "02"... "11"
 
 The handwriting samples were collected on a Toshiba Portégé M400 Tablet PC using its cordless stylus. Each one of the 11 writers completed 2 non-consecutive sessions. In each session, the corresponding writer was asked to write one exemplar for each character in a fixed set including lowercase letters, uppercase ones, and digits, along with other characters omitted from this database version. The acquisition program shows a set of boxes on the screen, a different one for each required character, and writers are told to write only inside those boxes. If they make a mistake or are unhappy with a character writing, they are instructed to clear the content of the corresponding box by using an on-screen button and try again. Subjects are monitored only when writing their first exemplars and every sample considered OK by its writer was accepted as such.
 
