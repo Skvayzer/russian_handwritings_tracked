@@ -4,15 +4,15 @@
 
 Data Set Information:
 
-We created a character database by collecting samples from 8 writers. Each writer contributed with letters (lower and uppercase), digits, and words from pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, so the total number of samples in this database version is 2128:
+We created a character database by collecting samples from 8 writers. Each writer contributed with letters (lower and uppercase), digits, and words from a pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, and the total number of samples in this database version is 2128:
 
-8 writers x 2 repetitions x (2x26 letters + 10 digits)
+8 writers x 3-4 repetitions x (2x33 letters + 10 digits)
 
 The proposed task is a writer-independent one consisting of 11 leaving-one-writer-out tests, so the effective training set size (for each one of the 1364 test samples) is 1240:
 
-10 writers x 2 repetitions x (2x26 letters + 10 digits)
+10 writers x 3-4 repetitions x (2x33 letters + 10 digits)
 
-Moreover, this classification task is a 43-class one because we have not considered a different class for each different character: each one of the 26 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as o's.
+Moreover, this classification task is a 43-class one because we have not considered a different class for each different character: each one of the 33 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as "о" 's.
 
 This database is available in a UNIPEN-like format, trying to mimic the original Pendigits database. Two versions of that database are available; see folder: [Web Link]
 
