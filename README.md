@@ -4,9 +4,9 @@
 
 Data Set Information:
 
-We created a character database by collecting samples from 8 writers. Each writer contributed with letters (lower and uppercase), digits, and words from a pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, and the total number of samples in this database version is 2128:
+We created a character dataset by collecting samples from 8 writers. Each writer contributed with letters (lower and uppercase), digits, and words from a pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, and the total number of samples in this database version is 2128:
 
-8 writers x 3-4 repetitions x (2x33 letters + 10 digits)
+<!--- 8 writers x 3-4 repetitions x (2x33 letters + 10 digits) --->
 
 The proposed task is a writer-independent one consisting of 11 leaving-one-writer-out tests, so the effective training set size (for each one of the 1364 test samples) is 1240:
 
