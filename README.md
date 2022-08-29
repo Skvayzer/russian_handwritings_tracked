@@ -8,9 +8,9 @@ We created a character dataset by collecting samples from 8 writers. Each writer
 
 <!--- 8 writers x 3-4 repetitions x (2x33 letters + 10 digits) --->
 
-The proposed task is a writer-independent one consisting of 11 leaving-one-writer-out tests, so the effective training set size (for each one of the 1364 test samples) is 1240:
+<!--- The proposed task is a writer-independent one consisting of 11 leaving-one-writer-out tests, so the effective training set size (for each one of the 1364 test samples) is 1240: --->
 
-10 writers x 3-4 repetitions x (2x33 letters + 10 digits)
+<!--- 10 writers x 3-4 repetitions x (2x33 letters + 10 digits) --->
 
 Moreover, this classification task is a 43-class one because we have not considered a different class for each different character: each one of the 33 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as "о" 's.
 
