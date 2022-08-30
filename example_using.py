@@ -76,22 +76,24 @@ upper_alphabet = ['Ё',
 # not using upper case letters for learning
 subfolders = [f.path for f in os.scandir(".") if f.is_dir()]
 print(subfolders)
-dataset = torch.empty(0, 43, 28, 28)
+
+dataset = None
 SYMBOLS = []
 for i, w in enumerate(subfolders):
-    symbols = []
     filenames = next(os.walk(w + "/mnist-like"), (None, None, []))[2]  # [] if no file
     filenames = sort(filenames)
-    if w == './.git': continue
-    # if i==0: SYMBOLS = [x.split('.')[0] for x in filenames]
+
+    if i == 0:
+        SYMBOLS = [x.split('.')[0] for x in filenames]
+        dataset = torch.empty(0, len(SYMBOLS), 28, 28)
 
     temp_files = torch.empty(0, 28, 28)
     for j, file in enumerate(filenames):
         data = np.genfromtxt(w + "/mnist-like/" + file, delimiter=',')
         data = torch.unsqueeze(torch.tensor(data), dim=0)
-        label = file.split(".")[0]
-        if label in upper_alphabet: continue
-        if i == 0: SYMBOLS.append(label)
+        # label = file.split(".")[0]
+        # if label in upper_alphabet: continue
+        # if i==0: SYMBOLS.append(label)
         # label = int(label) if label.isdigit() else 10 + ord(label) - ord('А')
         temp_files = torch.cat((temp_files, torch.tensor(data)), dim=0)
     temp_files = torch.unsqueeze(temp_files, dim=0)
@@ -101,7 +103,7 @@ for i, w in enumerate(subfolders):
 
 
 dataset = dataset.reshape([-1, 28, 28])
-
+print(dataset.shape)
 test_size = 0.1
 train_set, val_set = dataset[: len(dataset) - int(test_size * len(dataset)), :, :], dataset[len(dataset) - int(
     test_size * len(dataset)):, :, :]
@@ -182,8 +184,17 @@ for epoch in range(200):
         y_batch = torch.tensor([y % len(SYMBOLS) for y in
                                 range(i, i + batch_size if i + batch_size <= len(train_set) else len(train_set))]).to(
             device)
+        for c in upper_alphabet:
+            y_batch[y_batch == c] = SYMBOLS.index(c.lower())
+        y_batch[y_batch == '0'] = SYMBOLS.index('о')
 
         X_batch = X_batch.reshape(X_batch.shape[0], 1, 28, 28)
+
+        print(X_batch.shape)
+        plt.imshow(X_batch[67][0].reshape((28, 28)).cpu())
+        plt.show()
+        print(y_batch.shape)
+        print(SYMBOLS[y_batch[67]])
 
         prediction = mnistNet.forward(X_batch)
         loss_value = loss(prediction, y_batch)
