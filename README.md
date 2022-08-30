@@ -49,15 +49,7 @@ As said before, this database is available in a UNIPEN-like format, trying to mi
 
 Regarding the attributes of a sample, you can find them in the file format as follows:
 
-a. Character name: Each sample begins with a ".SEGMENT" line. The last component of that line shows the character name, one out of 62 possibilities. The complete set of possibilities is shown in the first line of each file, a ".LEXICON" line. Those possibilities are repeated here:
 
-"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
-"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
-"A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M"
-"N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
-"0" "1" "2" "3" "4" "5" "6" "7" "8" "9"
-
-b. Class name: The class name of a sample appears in the ".COMMENT" line that follows its ".SEGMENT" line. This name is one out of 35 possibilities. In each file, the complete set of possibilities is shown in ".COMMENT" lines between the ".LEXICON" line and a ".HIERARCHY" one. Those class definitions are repeated here:
 
 [A] = { "а" , "А" }
 [Б] = { "б" , "Б" }
@@ -102,4 +94,3 @@ b. Class name: The class name of a sample appears in the ".COMMENT" line that fo
 [8] = { "8" }
 [9] = { "9" }
 
-c. Sequence of strokes: After the ".SEGMENT" and ".COMMENT" lines of a sample, a sequence of one or more strokes follows until the beginning of a new sample or the end of the file. Each stroke begins with a ".PEN_DOWN" line and ends with a sequence ".PEN_UP", ".DT 100"; in between, a sequence of lines, each one representing X and Y coordinates of a point, where X grows left-to-right and Y grows downwards. Coordinates are integer numbers.
