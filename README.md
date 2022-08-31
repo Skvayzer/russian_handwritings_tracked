@@ -10,8 +10,8 @@ Moreover, this classification task is a 42-class one because we have not conside
 Database structure:
 
 **scanner.py** - character scanning program, dataset collection.  
-**convert2mnist.py** - a program for converting a dataset into a mnist-like form. it is intended for an example with the test.  
-**example_using.py** - example of a primitive grid for character recognition. It is intended only to demonstrate the consistency of the dataset. When using a dataset, of course, the user can and will use their own, more advanced approaches.  
+**convert2mnist.py** - a program for converting a dataset into a mnist-like form. It is intended for an example with the test.  
+**example_using.py** - example of a primitive grid for character recognition. It is intended only to demonstrate the consistency of the dataset. When using the dataset, of course, the user can and will use their own, more advanced approaches.  
 data - folder with dataset.  
 **w_n_m** - folder with writer's attempt (in total 28 folders)  
 &emsp;       \<char\> - the main file of the symbol track, a text file with a list of coordinates of the form - "x1","y1","x2","y2",...,"xN","yN".  
