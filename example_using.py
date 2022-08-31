@@ -14,7 +14,7 @@ import os
 import matplotlib.pyplot as plt
 import torch.nn as nn
 import torch.nn.functional as F
-
+from sklearn.model_selection import train_test_split
 
 def fixSeeds():
     # To make random weights in NN consistent from launch to launch on this device
@@ -73,63 +73,54 @@ upper_alphabet = ['Ё',
                   'Я']
 
 
-# not using upper case letters for learning
+
 subfolders = [f.path for f in os.scandir(".") if f.is_dir()]
 print(subfolders)
 
-dataset = None
+X = None
+y = None
 SYMBOLS = []
 for i, w in enumerate(subfolders):
     filenames = next(os.walk(w + "/mnist-like"), (None, None, []))[2]  # [] if no file
     filenames = sort(filenames)
-
+    if w == './.git': continue
     if i == 0:
         SYMBOLS = [x.split('.')[0] for x in filenames]
-        dataset = torch.empty(0, len(SYMBOLS), 28, 28)
+        X = torch.empty(0, len(SYMBOLS), 28, 28)
+        y = torch.empty(0, len(SYMBOLS))
 
-    temp_files = torch.empty(0, 28, 28)
+    temp_train = torch.empty(0, 28, 28)
+    temp_val = torch.empty(0)
     for j, file in enumerate(filenames):
         data = np.genfromtxt(w + "/mnist-like/" + file, delimiter=',')
         data = torch.unsqueeze(torch.tensor(data), dim=0)
-        # label = file.split(".")[0]
+        label = file.split(".")[0].lower()
+        if label == '0': label = 'о'
         # if label in upper_alphabet: continue
-        # if i==0: SYMBOLS.append(label)
-        # label = int(label) if label.isdigit() else 10 + ord(label) - ord('А')
-        temp_files = torch.cat((temp_files, torch.tensor(data)), dim=0)
-    temp_files = torch.unsqueeze(temp_files, dim=0)
-    dataset = torch.cat((dataset, temp_files), dim=0)
+        temp_train = torch.cat((temp_train, torch.tensor(data)), dim=0)
+        item = torch.tensor([SYMBOLS.index(label)])
+        temp_val = torch.cat((temp_val, item), dim=0)
+    temp_train = torch.unsqueeze(temp_train, dim=0)
+    temp_val = torch.unsqueeze(temp_val, dim=0)
+
+    X = torch.cat((X, temp_train), dim=0)
+    y = torch.cat((y, temp_val), dim=0)
 
 
 
-
-dataset = dataset.reshape([-1, 28, 28])
-print(dataset.shape)
+X = X.reshape([-1, 28, 28])
+y = y.reshape(-1)
+print(X.shape)
 test_size = 0.1
-train_set, val_set = dataset[: len(dataset) - int(test_size * len(dataset)), :, :], dataset[len(dataset) - int(
-    test_size * len(dataset)):, :, :]
-len(train_set), len(val_set)
-
-
-
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
+X = X.to(device)
+y = y.to(device).float()
+X = X.reshape(X.shape[0], 1, 28, 28)
 
 
-# class PerpcetronNet(nn.Module):
-#     def __init__(self, input_neurons, hidden_neurons):
-#         super(PerpcetronNet, self).__init__()
-#         self.input_neurons = input_neurons
-#         self.hidden_neurons = hidden_neurons
-#
-#         self.fc1 = nn.Linear(input_neurons, hidden_neurons)
-#         self.al1 = nn.Sigmoid()
-#         self.fc2 = nn.Linear(hidden_neurons, 76)
-#
-#     def forward(self, x):
-#         x = self.fc1(x)
-#         x = self.al1(x)
-#         x = self.fc2(x)
-#         return x
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=42)
+y_test = y_test.long()
 
 
 class ConvNet(nn.Module):
@@ -169,32 +160,18 @@ optimizer = torch.optim.Adam(mnistNet.parameters(), lr=1e-3)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.1)
 
 batch_size = 100
-train_set = train_set.to(device)
-val_set = val_set.to(device).float()
-val_set = val_set.reshape(val_set.shape[0], 1, 28, 28)
 test_accuracy_history = []
 test_loss_history = []
 train_loss_history = []
 
 for epoch in range(200):
     loss_value = 0
-    for i in range(0, len(train_set), batch_size):
+    for i in range(0, len(X_train), batch_size):
         optimizer.zero_grad()
-        X_batch = train_set[i: i + batch_size].float().to(device)
-        y_batch = torch.tensor([y % len(SYMBOLS) for y in
-                                range(i, i + batch_size if i + batch_size <= len(train_set) else len(train_set))]).to(
-            device)
-        for c in upper_alphabet:
-            y_batch[y_batch == c] = SYMBOLS.index(c.lower())
-        y_batch[y_batch == '0'] = SYMBOLS.index('о')
+        X_batch = X_train[i: i + batch_size].float().to(device)
+        y_batch = y_train[i: i + batch_size].long().to(device)
 
         X_batch = X_batch.reshape(X_batch.shape[0], 1, 28, 28)
-
-        print(X_batch.shape)
-        plt.imshow(X_batch[67][0].reshape((28, 28)).cpu())
-        plt.show()
-        print(y_batch.shape)
-        print(SYMBOLS[y_batch[67]])
 
         prediction = mnistNet.forward(X_batch)
         loss_value = loss(prediction, y_batch)
@@ -203,9 +180,9 @@ for epoch in range(200):
     scheduler.step()
 
     train_loss_history.append(loss_value.item())
-    test_prediction = mnistNet.forward(val_set.float())
-    y_test = torch.tensor([y % len(SYMBOLS) for y in range(len(train_set), len(train_set) + len(val_set))]).to(device)
-    accuracy = (test_prediction.argmax(dim=1) == y_test).float().mean().item()
+    test_prediction = mnistNet.forward(X_test.float())
+
+    accuracy = (test_prediction.argmax(dim=1) == y_test.int()).float().mean().item()
     print(accuracy)
     test_loss_history.append(loss(test_prediction, y_test).item())
     test_accuracy_history.append(accuracy)
