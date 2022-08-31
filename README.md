@@ -29,7 +29,7 @@ When testing, you are only allowed to read the sequence of strokes of a sample i
 Class distribution in example_using.py:
               
 [A] = { "а" , "А" } \
-[Б] = { "б" , "Б" } \              
+[Б] = { "б" , "Б" }            
 [В] = { "в" , "В" } \
 [Г] = { "г" , "Г" } \
 [Д] = { "д" , "Д" } \
