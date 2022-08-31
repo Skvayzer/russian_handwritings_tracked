@@ -9,64 +9,64 @@ Moreover, this classification task is a 42-class one because we have not conside
 
 Database structure:
 
-scanner.py -- character scanning program, dataset collection. \
-convert2mnist.py -- a program for converting a dataset into a mnist-like form. it is intended for an example with the test. \
-example_using.py -- example of a primitive grid for character recognition. It is intended only to demonstrate the consistency of the dataset. When using a dataset, of course, the user can and will use their own, more advanced approaches. \
-data - folder with dataset. \
-w_n_m - folder with writer's attempt (in total 28 folders) \
-       <char> - the main file of the symbol track, a text file with a list of coordinates of the form - "x1","y1","x2","y2",...,"xN","yN". \
-       <char>_times - a file with additional information on the track with a list of time in ms between receiving coordinates of points. \
-       <char>.png is an auxiliary file - a picture of the symbol as it was visible to the writer. The file is for understanding only. \
+**scanner.py** - character scanning program, dataset collection.  
+**convert2mnist.py** - a program for converting a dataset into a mnist-like form. it is intended for an example with the test.  
+**example_using.py** - example of a primitive grid for character recognition. It is intended only to demonstrate the consistency of the dataset. When using a dataset, of course, the user can and will use their own, more advanced approaches.  
+data - folder with dataset.  
+**w_n_m** - folder with writer's attempt (in total 28 folders)  
+&emsp;       \<char\> - the main file of the symbol track, a text file with a list of coordinates of the form - "x1","y1","x2","y2",...,"xN","yN".  
+&emsp;       \<char\>_times - a file with additional information on the track with a list of time in ms between receiving coordinates of points.  
+&emsp;       \<char\>.png is an auxiliary file - a picture of the symbol as it was visible to the writer. The file is for understanding only.  
  
 
 
-The handwriting samples were collected on a **<insert tablet name>** using its stylus. Each one of the 8 writers completed 3-4 non-consecutive sessions. In each session, the corresponding writer was asked to write one example for each character in a fixed set including lowercase and uppercase letters, digits, along with pangram words omitted. The acquisition program shows a set of boxes on the screen, a different one for each required character, and writers are told to write only inside those boxes. If they make a mistake or are unhappy with a character writing, they are instructed to clear the content of the corresponding box by using an on-screen button and try again. Subjects are monitored only when writing their first sample and every further sample is considered to be OK due to its writer accepted them as such.
+The handwriting samples were collected on a **\<insert tablet name\>** using its stylus. Each one of the 8 writers completed 3-4 non-consecutive sessions. In each session, the corresponding writer was asked to write one example for each character in a fixed set including lowercase and uppercase letters, digits, along with pangram words omitted. The acquisition program shows a set of boxes on the screen, a different one for each required character, and writers are told to write only inside those boxes. If they make a mistake or are unhappy with a character writing, they are instructed to clear the content of the corresponding box by using an on-screen button and try again. Subjects are monitored only when writing their first sample and every further sample is considered to be OK due to its writer accepted them as such.
 
 Only X and Y coordinate information and timing information were recorded along the strokes by the acquisition program, without, for instance, pressure level values.
 
 When testing, you are only allowed to read the sequence of strokes of a sample in order to predict its class.
 
-Class distribution in example_using.py:
+Class distribution in **example_using.py**:
               
-[A] = { "а" , "А" } \
+[A] = { "а" , "А" }  
 [Б] = { "б" , "Б" }         
-[В] = { "в" , "В" } \
-[Г] = { "г" , "Г" } \
-[Д] = { "д" , "Д" } \
-[Е] = { "е" , "Е" } \      
-[Ё] = { "ё" , "Ё" } \          
-[Ж] = { "ж" , "Ж" } \           
-[З] = { "з" , "З" } \           
-[И] = { "и" , "И" } \              
-[Й] = { "й" , "Й" } \             
-[К] = { "к" , "К" } \              
-[Л] = { "л" , "Л" } \              
-[М] = { "м" , "М" } \              
-[Н] = { "н" , "Н" } \             
-[О] = { "о" , "О", "0" } \             
-[П] = { "п" , "П" } \             
-[Р] = { "р" , "Р" } \              
-[С] = { "с" , "С" } \              
-[Т] = { "т" , "Т" } \              
-[У] = { "у" , "У" } \              
-[Ф] = { "ф" , "Ф" } \             
-[Х] = { "х" , "Х" } \             
-[Ц] = { "ц" , "Ц" } \             
-[Ч] = { "ч" , "Ч" } \              
-[Ш] = { "ш" , "Ш" } \              
-[Щ] = { "щ" , "Щ" } \              
-[Ъ] = { "ъ" , "Ъ" } \             
-[Ы] = { "ы" , "Ы" } \              
-[Ь] = { "ь" , "Ь" } \             
-[Э] = { "э" , "Э" } \             
-[Ю] = { "ю" , "Ю" } \              
-[Я] = { "я" , "Я" } \              
-[1] = { "1" } \              
-[2] = { "2" } \             
-[3] = { "3" } \             
-[4] = { "4" } \              
-[5] = { "5" } \              
-[6] = { "6" } \              
-[7] = { "7" } \             
-[8] = { "8" } \              
-[9] = { "9" } \
+[В] = { "в" , "В" }  
+[Г] = { "г" , "Г" }  
+[Д] = { "д" , "Д" }  
+[Е] = { "е" , "Е" }        
+[Ё] = { "ё" , "Ё" }            
+[Ж] = { "ж" , "Ж" }            
+[З] = { "з" , "З" }             
+[И] = { "и" , "И" }                
+[Й] = { "й" , "Й" }               
+[К] = { "к" , "К" }                
+[Л] = { "л" , "Л" }                
+[М] = { "м" , "М" }                
+[Н] = { "н" , "Н" }               
+[О] = { "о" , "О", "0" }              
+[П] = { "п" , "П" }               
+[Р] = { "р" , "Р" }                
+[С] = { "с" , "С" }                
+[Т] = { "т" , "Т" }                
+[У] = { "у" , "У" }                
+[Ф] = { "ф" , "Ф" }               
+[Х] = { "х" , "Х" }               
+[Ц] = { "ц" , "Ц" }               
+[Ч] = { "ч" , "Ч" }                
+[Ш] = { "ш" , "Ш" }                
+[Щ] = { "щ" , "Щ" }                
+[Ъ] = { "ъ" , "Ъ" }               
+[Ы] = { "ы" , "Ы" }                
+[Ь] = { "ь" , "Ь" }               
+[Э] = { "э" , "Э" }               
+[Ю] = { "ю" , "Ю" }                
+[Я] = { "я" , "Я" }                
+[1] = { "1" }                
+[2] = { "2" }               
+[3] = { "3" }               
+[4] = { "4" }                
+[5] = { "5" }                
+[6] = { "6" }                
+[7] = { "7" }               
+[8] = { "8" }                
+[9] = { "9" }  
