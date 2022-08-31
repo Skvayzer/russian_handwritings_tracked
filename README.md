@@ -1,18 +1,11 @@
 # Russian Tracked Handwritings
 
-# NOT FINISHED
-
 Data Set Information:
 
 We created a character dataset by collecting samples from 8 writers. Each writer contributed with letters (lower and uppercase), digits, and words from a pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, and the total number of samples in this database version is 2128:
 
-<!--- 8 writers x 3-4 repetitions x (2x33 letters + 10 digits) --->
 
-<!--- The proposed task is a writer-independent one consisting of 11 leaving-one-writer-out tests, so the effective training set size (for each one of the 1364 test samples) is 1240: --->
-
-<!--- 10 writers x 3-4 repetitions x (2x33 letters + 10 digits) --->
-
-Moreover, this classification task is a 43-class one because we have not considered a different class for each different character: each one of the 33 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as "о" 's.
+Moreover, this classification task is a 42-class one because we have not considered a different class for each different character: each one of the 33 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as "о" 's.
 
 Database structure:
 
@@ -27,70 +20,97 @@ w_n_m - folder with writer's attempt (in total 28 folders)
  
 
 
-The handwriting samples were collected on a <insert tablet name> using its stylus. Each one of the 8 writers completed 3 non-consecutive sessions. In each session, the corresponding writer was asked to write one example for each character in a fixed set including lowercase letters, uppercase ones, and digits, along with other characters omitted from this database version. The acquisition program shows a set of boxes on the screen, a different one for each required character, and writers are told to write only inside those boxes. If they make a mistake or are unhappy with a character writing, they are instructed to clear the content of the corresponding box by using an on-screen button and try again. Subjects are monitored only when writing their first exemplars and every sample considered OK by its writer was accepted as such.
+The handwriting samples were collected on a **<insert tablet name>** using its stylus. Each one of the 8 writers completed 3-4 non-consecutive sessions. In each session, the corresponding writer was asked to write one example for each character in a fixed set including lowercase and uppercase letters, digits, along with pangram words omitted. The acquisition program shows a set of boxes on the screen, a different one for each required character, and writers are told to write only inside those boxes. If they make a mistake or are unhappy with a character writing, they are instructed to clear the content of the corresponding box by using an on-screen button and try again. Subjects are monitored only when writing their first sample and every further sample is considered to be OK due to its writer accepted them as such.
 
-Only X and Y coordinate information was recorded along the strokes by the acquisition program, without, for instance, pressure level values or timing information. Thus, in multi-stroke samples, no information at all was recorded between strokes; however, in this database version we have included a ".DT 100" line in sample files after each stroke, following the Pendigits database criterion.
-
-We have observed that runs of consecutive points with identical coordinates were frequently acquired inside strokes; such runs were preserved in this database version, so each database user must decide whether to avoid them by an appropriate preprocessing step or not.
-
-Attribute Information:
-
-For each sample, you can find:
-
-a. The character it represents.
-b. The class it belongs to.
-c. The sequence of strokes it consists of.
+Only X and Y coordinate information and timing information were recorded along the strokes by the acquisition program, without, for instance, pressure level values.
 
 When testing, you are only allowed to read the sequence of strokes of a sample in order to predict its class.
 
-For Each Attribute:
-
-As said before, this database is available in a UNIPEN-like format, trying to mimic the original Pendigits database. A definition of UNIPEN format can be found in [Web Link]
-
-Regarding the attributes of a sample, you can find them in the file format as follows:
-
-
-
+Class distribution in example_using.py:
+              
 [A] = { "а" , "А" }
+              
 [Б] = { "б" , "Б" }
+              
 [В] = { "в" , "В" }
+              
 [Г] = { "г" , "Г" }
+              
 [Д] = { "д" , "Д" }
+              
 [Е] = { "е" , "Е" }
+              
 [Ё] = { "ё" , "Ё" }
+              
 [Ж] = { "ж" , "Ж" }
+              
 [З] = { "з" , "З" }
+              
 [И] = { "и" , "И" }
+              
 [Й] = { "й" , "Й" }
+              
 [К] = { "к" , "К" }
+              
 [Л] = { "л" , "Л" }
+              
 [М] = { "м" , "М" }
+              
 [Н] = { "н" , "Н" }
+              
 [О] = { "о" , "О", "0" }
+              
 [П] = { "п" , "П" }
+              
 [Р] = { "р" , "Р" }
+              
 [С] = { "с" , "С" }
+              
 [Т] = { "т" , "Т" }
+              
 [У] = { "у" , "У" }
+              
 [Ф] = { "ф" , "Ф" }
+              
 [Х] = { "х" , "Х" }
+              
 [Ц] = { "ц" , "Ц" }
+              
 [Ч] = { "ч" , "Ч" }
+              
 [Ш] = { "ш" , "Ш" }
+              
 [Щ] = { "щ" , "Щ" }
+              
 [Ъ] = { "ъ" , "Ъ" }
+              
 [Ы] = { "ы" , "Ы" }
+              
 [Ь] = { "ь" , "Ь" }
+              
 [Э] = { "э" , "Э" }
+              
 [Ю] = { "ю" , "Ю" }
+              
 [Я] = { "я" , "Я" }
+              
 [1] = { "1" }
+              
 [2] = { "2" }
+              
 [3] = { "3" }
+              
 [4] = { "4" }
+              
 [5] = { "5" }
+              
 [6] = { "6" }
+              
 [7] = { "7" }
+              
 [8] = { "8" }
+              
 [9] = { "9" }
+
+              
 
