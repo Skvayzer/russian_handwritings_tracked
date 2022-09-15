@@ -9,11 +9,11 @@ Moreover, this classification task is a 42-class one because we have not conside
 
 Database structure:
 
-```**scanner.py**``` - character scanning program, dataset collection.  
-**convert2mnist.py** - a program for converting a dataset into a mnist-like form. It is intended for an example with the test.  
-**example_using.py** - example of a primitive grid for character recognition. It is intended only to demonstrate the consistency of the dataset. When using the dataset, of course, the user can and will use their own, more advanced approaches.  
+```scanner.py``` - character scanning program, dataset collection.  
+```convert2mnist.py``` - a program for converting a dataset into a mnist-like form. It is intended for an example with the test.  
+```example_using.py``` - example of a primitive grid for character recognition. It is intended only to demonstrate the consistency of the dataset. When using the dataset, of course, the user can and will use their own, more advanced approaches.  
 data - folder with dataset.  
-**w_n_m** - folder with writer's attempt (in total 37 folders)  
+```w_n_m``` - folder with writer's attempt (in total 37 folders)  
 &emsp;       \<char\> - the main file of the symbol track, a text file with a list of coordinates of the form - "x1","y1","x2","y2",...,"xN","yN".  
 &emsp;       \<char\>_times - a file with additional information on the track with a list of time in ms between receiving coordinates of points.  
 &emsp;       \<char\>.png is an auxiliary file - a picture of the symbol as it was visible to the writer. The file is for understanding only.  
@@ -24,7 +24,7 @@ The handwriting samples were collected on a **xp pen deco03** using its stylus. 
 
 Only X and Y coordinate information and timing information were recorded along the strokes by the acquisition program, without, for instance, pressure level values.
 
-Class distribution in **example_using.py**:
+Class distribution in ```example_using.py```:
               
 [A] = { "а" , "А" }  
 [Б] = { "б" , "Б" }         
