@@ -14,7 +14,7 @@ Database structure:
 ```example_using.py``` - example of a primitive grid for character recognition. It is intended only to demonstrate the consistency of the dataset. When using the dataset, of course, the user can and will use their own, more advanced approaches.  
 data - folder with dataset.  
 ```w_n_m``` - folder with writer's attempt (in total 37 folders)  
-&emsp;       \<char\> - the main file of the symbol track, a text file with a list of coordinates of the form - "x1","y1","x2","y2",...,"xN","yN".  
+&emsp;       ```char``` - the main file of the symbol track, a text file with a list of coordinates of the form - "x1","y1","x2","y2",...,"xN","yN".  
 &emsp;       \<char\>_times - a file with additional information on the track with a list of time in ms between receiving coordinates of points.  
 &emsp;       \<char\>.png is an auxiliary file - a picture of the symbol as it was visible to the writer. The file is for understanding only.  
  
