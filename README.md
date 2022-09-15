@@ -9,7 +9,7 @@ Moreover, this classification task is a 42-class one because we have not conside
 
 Database structure:
 
-'''**scanner.py**''' - character scanning program, dataset collection.  
+```**scanner.py**``` - character scanning program, dataset collection.  
 **convert2mnist.py** - a program for converting a dataset into a mnist-like form. It is intended for an example with the test.  
 **example_using.py** - example of a primitive grid for character recognition. It is intended only to demonstrate the consistency of the dataset. When using the dataset, of course, the user can and will use their own, more advanced approaches.  
 data - folder with dataset.  
