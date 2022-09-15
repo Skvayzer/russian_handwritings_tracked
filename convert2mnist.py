@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
-NEEDS_RENAMING = False
+NEEDS_RENAMING = True
 
 WORDS=['А','а','Б','б','В','в','Г','г','Д','д','Е','е','Ё','ё','Ж','ж','З','з',
         'И','и','Й','й','К','к','Л','л','М','м','Н','н','О','о','П','п','Р','р',
@@ -79,7 +79,8 @@ def connect_points(x, y, img, times):
 
 
 writers = list()
-subfolders = [ f.path for f in os.scandir(".") if f.is_dir() ]
+subfolders = [ f.path for f in os.scandir("../new") if f.is_dir() ]
+
 for w in subfolders:
     if w == ".": continue
     writer_name = ''.join([i for i in w if not i.isdigit()])
@@ -151,4 +152,4 @@ for w in subfolders:
     if NEEDS_RENAMING:
         attempt = ''.join([c for c in w if c.isdigit()])
         attempt = int(attempt) if len(attempt) > 0 else 0
-        os.rename(w, "./w_" + str(writers.index(writer_name)) + "_" + str(attempt))
+        os.rename(w, "../new/w_" + str(9 + writers.index(writer_name)) + "_" + str(attempt))
