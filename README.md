@@ -2,7 +2,7 @@
 
 Data Set Information:
 
-We created a character dataset by collecting samples from 8 writers. Each writer contributed with letters (lower and uppercase), digits, and words from a pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, and the total number of samples in this database version is 2128:
+We created a character dataset by collecting samples from 12 writers. Each writer contributed with letters (lower and uppercase), digits, and words from a pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, and the total number of samples in this database version is 2812:
 
 
 Moreover, this classification task is a 42-class one because we have not considered a different class for each different character: each one of the 33 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as "о" 's.
@@ -20,11 +20,9 @@ data - folder with dataset.
  
 
 
-The handwriting samples were collected on a **xp pen deco03** using its stylus. Each one of the 8 writers completed 3-4 consecutive sessions. In each session, the corresponding writer was asked to write one example for each character in a fixed set including lowercase and uppercase letters, digits, along with pangram words omitted. The acquisition program shows a set of boxes on the screen, a different one for each required character, and writers are told to write only inside those boxes. If they make a mistake or are unhappy with a character writing, they are instructed to clear the content of the corresponding box by using an on-screen button and try again. Subjects are monitored only when writing their first sample and every further sample is considered to be OK due to its writer accepted them as such.
+The handwriting samples were collected on a **xp pen deco03** using its stylus. Each one of the 8 writers completed 1-4 consecutive sessions. In each session, the corresponding writer was asked to write one example for each character in a fixed set including lowercase and uppercase letters, digits, along with pangram words omitted. The acquisition program shows a set of boxes on the screen, a different one for each required character, and writers are told to write only inside those boxes. Subjects are monitored only when writing their first sample and every further sample is considered to be OK due to its writer accepted them as such.
 
 Only X and Y coordinate information and timing information were recorded along the strokes by the acquisition program, without, for instance, pressure level values.
-
-When testing, you are only allowed to read the sequence of strokes of a sample in order to predict its class.
 
 Class distribution in **example_using.py**:
               
