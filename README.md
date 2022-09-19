@@ -1,5 +1,7 @@
 # Russian Tracked Handwritings
 
+![alt text](w_0_0/А.png "А")
+
 Data Set Information:
 
 We created a character dataset by collecting samples from 12 writers. Each writer contributed with letters (lower and uppercase), digits, and words from a pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, and the total number of samples in this database version is 2812:
