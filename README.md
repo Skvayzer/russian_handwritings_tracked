@@ -1,6 +1,6 @@
 # Russian Tracked Handwritings
 
-![alt text](w_0_0/А.png "А")
+![alt text](w_0_1/А.png "А")
 
 Data Set Information:
 
