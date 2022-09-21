@@ -1,8 +1,4 @@
 import os
-import csv
-import numpy as np
-import matplotlib.pyplot as plt
-from tqdm import tqdm
 import shutil
 
 NEEDS_RENAMING = False
@@ -23,28 +19,27 @@ SYMBOLS = ['А','а','Б','б','В','в','Г','г','Д','д','Е','е','Ё','ё'
 MNIST_IMAGE_SIZE = 28
 
 
-# subfolders = [ f.path for f in os.scandir("./tablet") if f.is_dir() ]
-# for w in subfolders:
-#     if w == ".": continue
-#
-#     for word in ['FIRSTNAME','LASTNAME','SIGN']:
-#         dots_path = w + "/" + word
-#         times_path = w + "/" + word + "_times"
-#         image_path = w + "/" + word + ".png"
-#         if(os.path.isfile(dots_path)):
-#             os.remove(dots_path)
-#             os.remove(times_path)
-#             os.remove(image_path)
-#
-#         else:
-#             print("File Not Found: ", dots_path)
-#             continue
 
 
-subfolders = [ f.path for f in os.scandir("./new") if f.is_dir() ]
+
+
+subfolders = [ f.path for f in os.scandir(".") if f.is_dir() ]
 for w in subfolders:
     if w == ".": continue
     if not os.path.exists(w + '/extra'): os.makedirs(w + '/extra')
+
+    for word in ['FIRSTNAME','LASTNAME','SIGN']:
+        dots_path = w + "/" + word
+        times_path = w + "/" + word + "_times"
+        image_path = w + "/" + word + ".png"
+        if(os.path.isfile(dots_path)):
+            os.remove(dots_path)
+            os.remove(times_path)
+            os.remove(image_path)
+
+        else:
+            print("File Not Found: ", dots_path)
+            continue
     for word in ['cъешь','ещё','этих','мягких','французских',
         'булок','да','выпей','чаю']:
         dots_path = w + "/" + word
