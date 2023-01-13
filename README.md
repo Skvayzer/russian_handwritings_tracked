@@ -8,14 +8,14 @@ Authors: Dmitriy Yacenko, Konstantin Smirnov
 [Publication link](https://doi.org/10.17632/3h6h5d7xg2.1)
 
 
-Dataset Information:
+## Dataset Information:
 
 We created a character dataset by collecting samples from 12 writers. Each writer contributed with letters (lower and uppercase), digits, and words from a pangram that we have not employed in our experiments, but they are included in "extra" folder for each writer in this database. Up to 4 samples have been collected for each pair writer/character, and the total number of samples in this database version is 2812:
 
 
 Moreover, this classification task is a 42-class one because we have not considered a different class for each different character: each one of the 33 letters is considered as a case-independent class, there are 9 additional clases for non-zero digits, and the zero is included in the same class as "о" 's.
 
-Database structure:
+## Database structure:
 
 ```scanner.py``` - character scanning program, dataset collection.  
 ```convert2mnist.py``` - a program for converting a dataset into a mnist-like form. It is intended for an example with the test.  
@@ -32,7 +32,7 @@ The handwriting samples were collected on a **xp pen deco03** using its stylus. 
 
 Only X and Y coordinate information and timing information were recorded along the strokes by the acquisition program, without, for instance, pressure level values.
 
-Class distribution in ```example_using.py```:
+## Class distribution in ```example_using.py```:
               
 [A] = { "а" , "А" }  
 [Б] = { "б" , "Б" }         
